@@ -1,0 +1,60 @@
+var ascNum, asciiMax, asciiMin, chara, key, messEncr, message, start;
+asciiMin = 32;
+asciiMax = 126;
+key = 1015;
+key = key.toString();
+start = input("\uc554\ud638\ub97c \ub9cc\ub4e4\uace0 \uc2f6\ub2e4\uba74 A\ub97c \uc785\ub825\ud558\uc138\uc694. \uc554\ud638\ub97c \ud574\ub3c5\ud558\uace0 \uc2f6\ub2e4\uba74 B\ub97c \uc785\ub825\ud558\uc138\uc694. \uc785\ub825 \ud6c4\uc5d4 \uc5d4\ud130\ub97c \ub204\ub974\uc138\uc694.");
+start = start.strip();
+start = start.upper();
+
+if (start === "A") {
+  message = input("\uc554\ud638\ub85c \ub9cc\ub4e4\uace0 \uc2f6\uc740 \ub9d0\uc744 \uc601\uc5b4\ub85c \uc785\ub825\ud558\uc138\uc694.");
+  messEncr = "";
+
+  for (var index = 0, _pj_a = message.length; index < _pj_a; index += 1) {
+    chara = ord(message[index]);
+
+    if (chara < asciiMin || chara > asciiMax) {
+      messEncr += message[index];
+    } else {
+      ascNum = chara + Number.parseInt(key[index % key.length]);
+    }
+
+    if (ascNum > asciiMax) {
+      ascNum -= asciiMax - asciiMin;
+    }
+
+    messEncr = messEncr + chr(ascNum);
+  }
+
+  console.log("\uc554\ud638\ud654 \uc644\ub8cc! \uc554\ud638\ub294", messEncr, "\uc785\ub2c8\ub2e4.");
+} else {
+  if (start === "B") {
+    message = input("\ud574\ub3c5\ud560 \uc554\ud638\ub97c \uc785\ub825\ud558\uc138\uc694.");
+    messEncr = "";
+
+    for (var index = 0, _pj_a = message.length; index < _pj_a; index += 1) {
+      chara = ord(message[index]);
+
+      if (chara < asciiMin || chara > asciiMax) {
+        messEncr += message[index];
+      } else {
+        ascNum = chara - Number.parseInt(key[index % key.length]);
+      }
+
+      if (ascNum < asciiMin) {
+        ascNum += asciiMax - asciiMin;
+      }
+
+      messEncr = messEncr + chr(ascNum);
+    }
+
+    console.log("\ud574\ub3c5 \uc644\ub8cc!", messEncr);
+  } else {
+    if (start === "C") {
+      console.log("\uccad\uac1c\uad6c\ub9ac\uc2dc\ub124\uc694");
+    } else {
+      console.log("\ud760... \ub2e4\uc2dc \uc2dc\ub3c4\ud574\ubcf4\uc138\uc694!.");
+    }
+  }
+}
